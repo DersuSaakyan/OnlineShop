@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>User page</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Start Main Top -->
+<div class="main-top">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="margin-left: 50%">
+                <div class="our-link">
+                    <div class="login-box" style="display: flex;">
+                        <div style="width: 50px;">
+                            <a href="#" style="color:white"><img th:src="@{|/getImg/${us.getPicUrl()}|}"
+                                                                 width="35px" style="border-radius: 25px"></a>
+                        </div>
+
+                        <div style="width: 120px;">
+                            <a th:href="@{/login}" style="color:white" th:text="${us.name}"></a>
+                            <a th:href="@{/login}" style="color:white" th:text="${us.surname}"></a>
+                        </div>
+                        <br>
+                        <a href="/perform_logout" style="color: red">Sign out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+<header class="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" th:href="@{/}"><img src="images/AlloMarket.jpg" class="logo" width="230px"
+                                                            alt=""></a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <!--                   <li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>-->
+                    <li class="nav-item"><a class="nav-link" th:href="@{/aboutUs}">About Us</a></li>
+                    <li class="dropdown megamenu-fw">
+                        <a th:href="@{/shop}" class="nav-link">Shop</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">Option</a>
+                        <ul class="dropdown-menu">
+                            <li><a th:href="@{/cart}">Cart</a></li>
+                            <li><a th:href="@{/login}">My Account</a></li>
+                            <li><a th:href="@{/wishlist}">Wishlist</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/service}">Our Service</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav">
+                <ul>
+                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    <li class="side-menu"><a href="#">
+                        <i class="fa fa-shopping-bag"></i>
+                    </a></li>
+                </ul>
+            </div>
+            <!-- End Atribute Navigation -->
+        </div>
+        <!-- Start Side Menu -->
+        <div class="side">
+            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+            <li class="cart-box">
+                <ul class="cart-list" id="ccccc">
+
+                </ul>
+            </li>
+        </div>
+        <!-- End Side Menu -->
+    </nav>
+    <!-- End Navigation -->
+</header>
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+<div class="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" oninput="search()" class="form-control" id="inp" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+    <div id="searchBody" class="hide in" style="overflow: auto;height: 400px">
+
+    </div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Shop</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+                    <li class="breadcrumb-item active"><a th:href="@{/shop}">Shop</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Shop Page  -->
+<div class="products-box">
+    <div class="container">
+
+        <div class="col-lg-12">
+            <div class="title-all text-center">
+                <h1>My Products</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="special-menu text-center">
+                        <div class="button-group filter-button-group">
+                            <button id="all">All</button>
+                            <button th:each="c:${cats}" th:text="${c.name}" class="cats" th:data-id="${c.id}"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style=" height: 400px; position: relative;overflow: auto;">
+                <div class="row special-list list" id="cats" style="padding-bottom: 310px;">
+                    <div th:each="p:${products}" class="col-lg-3 col-md-6 special-grid c"
+                         th:id="${p.id}">
+                        <div class="products-single fix">
+                            <div class="box-img-hover" style="height: 250px">
+                                <img th:src="@{|/getProductImg/${p.id}|}" class="img-fluid" alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a th:href="@{|/view/${p.id}|}" data-toggle="tooltip" data-placement="right"
+                                               title="View"><i
+                                                class="fas fa-eye"></i></a></li>
+                                        <li><a th:href="@{|/editPr/${p.id}|}" data-toggle="tooltip"
+                                               data-placement="right"
+                                               title="Update"><i
+                                                class="fas fa-sync-alt"></i></a></li>
+                                    </ul>
+                                    <button class="cart del" th:data-id="${p.id}">Delete</button>
+                                </div>
+                            </div>
+                            <div class="why-text" th:if="${p.getActive()==0}" style="background: orange">
+                                <h4 th:text="${p.title}"></h4>
+                                <h5 th:text="${p.price}"></h5><span>$</span>
+                            </div>
+                            <div class="why-text" th:if="${p.getActive()==1}" style="background: green">
+                                <h4 style="color: black" th:text="${p.title}"></h4>
+                                <h5 style="color: black" th:text="${p.price}"></h5><span style="color: black">$</span>
+                            </div>
+                            <div class="why-text" th:if="${p.getActive()==-1}" style="background: red">
+                                <h4 th:text="${p.title}" style="color: black"></h4>
+                                <h5 th:text="${p.price}" style="color: black"></h5><span style="color: black">$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Products  -->
+<div class="my-account-box-main">
+    <div class="container">
+        <div class="my-account-page">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a th:href="@{/myOrder}"> <i class="fa fa-gift"></i> </a>
+                            </div>
+                            <div class="service-desc">
+                                <a th:href="@{/myOrder}"><h4>Your Orders</h4></a>
+                                <p>Track, return, or buy things again</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a th:href="@{/editUs}"><i class="fa fa-lock"></i> </a>
+                            </div>
+                            <div class="service-desc">
+                                <a th:href="@{/editUs}"><h4>Login &amp; security</h4></a>
+                                <p>Edit login, name, and mobile number</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a th:href="@{/addProduct}"> <i
+                                        style="font-size: 95px;line-height: 78px;font-style: unset;">+</i></a>
+                            </div>
+                            <div class="service-desc">
+                                <a th:href="@{/addProduct}"><h4>Add Product</h4></a>
+                                <p>Add new product</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Start Instagram Feed  -->
+<div class="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img1.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img2.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img3.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img.4jpg.jpg" alt=""/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img5.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img7.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img8.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img9.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/footer_img10.jpg" alt="" height="168px"/>
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Instagram Feed  -->
+
+<!-- Start Footer  -->
+<footer>
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-widget">
+                        <h4>About AlloMarket</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <ul>
+                            <a class="btn hvr-hover" href="https://www.facebook.com/"><i class="fab fa-facebook"
+                                                                                         aria-hidden="true"></i></a>
+                            <a class="btn hvr-hover" href="https://twitter.com/"><i class="fab fa-twitter"
+                                                                                    aria-hidden="true"></i></a>
+                            <a class="btn hvr-hover" href="https://www.whatsapp.com/"><i class="fab fa-whatsapp"
+                                                                                         aria-hidden="true"></i></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-link">
+                        <h4>Information</h4>
+                        <ul>
+                            <li><a th:href="@{/about}">About Us</a></li>
+                            <li><a th:href="@{/service}">Our Service</a></li>
+                            <li><a th:href="@{/shop}">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-link-contact">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li>
+                                <p><i class="fas fa-map-marker-alt"></i>Address: Mashtoc Avenue <br>Tumanyan Street
+                                    <br> KS 67213 </p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone-square"></i>Phone: <a>+374 91 000000</a></p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope"></i>Email: <a>derensahakyan7@gmail.com</a>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- End Footer  -->
+
+<!-- Start copyright  -->
+<div class="footer-copyright">
+    <p class="footer-company">All Rights Reserved. &copy; 2020 <a href="#">AlloMarket</a> Design By :
+        <a href="https://html.design/">html design</a></p>
+</div>
+<!-- End copyright  -->
+
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<!-- ALL JS FILES -->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- ALL PLUGINS -->
+<script src="js/jquery.superslides.min.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/inewsticker.js"></script>
+<script src="js/bootsnav.js"></script>
+<script src="js/images-loded.min.js"></script>
+<script src="js/isotope.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/baguetteBox.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="js/form-validator.min.js"></script>
+<script src="js/contact-form-script.js"></script>
+<script src="js/custom.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/login.js"></script>
+<script src="js/search.js"></script>
+<script src="js/viewCart.js"></script>
+<script src="js/blockUser.js"></script>
+<script src="js/user.js"></script>
+
+
+</body>
+
+</html>
